@@ -10,5 +10,6 @@
 		<class>com.coreng.jba.entities.TypeConso</class>
 		<class>com.coreng.jba.entities.Commande</class>
 		<class>com.coreng.jba.entities.LigneCommande</class>
+		<class>com.coreng.jba.entities.Prestation</class>
 	</persistence-unit>
 </persistence>

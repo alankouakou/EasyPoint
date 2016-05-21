@@ -1,5 +1,6 @@
 package com.coreng.jba.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class ClientService {
 	}
 
 	public void save(Client client) {
+		Date dateMaj = new Date();
+		client.setDateMaj(dateMaj);
 		clientRep.save(client);
 	}
 

@@ -1,6 +1,7 @@
 package com.coreng.jba.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,7 @@ public class Client {
 
 	private String nom;
 	private String contact;
+	private Date dateMaj;
 	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vehicule> vehicules;
 
@@ -73,6 +75,14 @@ public class Client {
 
 	public void setContact(String contact) {
 		this.contact = contact;
+	}
+
+	public Date getDateMaj() {
+		return dateMaj;
+	}
+
+	public void setDateMaj(Date dateMaj) {
+		this.dateMaj = dateMaj;
 	}
 
 	@Override
