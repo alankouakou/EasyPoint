@@ -25,7 +25,6 @@ public class ConsommationService {
 	}
 
 	public void save(Consommation consommation) {
-		// TODO Auto-generated method stub
 		consommationRepo.save(consommation);
 	}
 

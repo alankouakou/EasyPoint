@@ -3,6 +3,7 @@ package com.coreng.jba.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import com.coreng.jba.entities.Client;
 import com.coreng.jba.entities.Commande;
 import com.coreng.jba.entities.Consommation;
 import com.coreng.jba.entities.LigneCommande;
+import com.coreng.jba.entities.Prestation;
 import com.coreng.jba.entities.Role;
+import com.coreng.jba.entities.ServiceAuto;
 import com.coreng.jba.entities.TypeConso;
 import com.coreng.jba.entities.TypeVehicule;
 import com.coreng.jba.entities.User;
@@ -21,7 +24,9 @@ import com.coreng.jba.repositories.ClientRepository;
 import com.coreng.jba.repositories.CommandeRepository;
 import com.coreng.jba.repositories.ConsommationRepository;
 import com.coreng.jba.repositories.LigneCommandeRepository;
+import com.coreng.jba.repositories.PrestationRepository;
 import com.coreng.jba.repositories.RoleRepository;
+import com.coreng.jba.repositories.ServiceAutoRepository;
 import com.coreng.jba.repositories.TypeConsoRepository;
 import com.coreng.jba.repositories.TypeVehiculeRep;
 import com.coreng.jba.repositories.UserRepository;
@@ -56,16 +61,39 @@ public class InitDbService {
 	private TypeVehiculeRep typeVehiculeRep;
 
 	@Autowired
+	private PrestationRepository prestationRepo;
+
+	@Autowired
 	private RoleRepository roleRep;
 
+	@Autowired
+	ServiceAutoRepository serviceAutoRepo;
+
+	@PostConstruct
 	protected void init() {
-		TypeConso eauMinerale = new TypeConso("Eau minerale");
-		TypeConso soda = new TypeConso("Soda");
-		TypeConso boissonEnergisante = new TypeConso("Boisson energisante");
-		TypeConso biere = new TypeConso("Bière");
-		TypeConso vins = new TypeConso("Vin");
-		TypeConso spiritueux = new TypeConso("spiritueux");
-		TypeConso boissonChaude = new TypeConso("Boisson chaude");
+
+		Prestation prestationResto = new Prestation("Restauration");
+		Prestation prestationAuto = new Prestation("Service Auto");
+		Prestation boisson = new Prestation("Rafraichissement");
+
+		prestationRepo.save(prestationResto);
+		prestationRepo.save(prestationAuto);
+		prestationRepo.save(boisson);
+
+		// Les rafraichissements
+		TypeConso eauMinerale = new TypeConso("Eau minerale", boisson);
+		TypeConso soda = new TypeConso("Soda", boisson);
+		TypeConso boissonEnergisante = new TypeConso("Boisson energisante", boisson);
+		TypeConso biere = new TypeConso("Bière", boisson);
+		TypeConso vins = new TypeConso("Vin", boisson);
+		TypeConso spiritueux = new TypeConso("spiritueux", boisson);
+		TypeConso boissonChaude = new TypeConso("Boisson chaude", boisson);
+
+		// Les services auto
+		TypeConso serviceAuto = new TypeConso("Service auto", prestationAuto);
+		TypeConso serviceResto = new TypeConso("Grillades", prestationResto);
+
+		// TODO Ajouter autre consos de type serviceAuto, resto
 
 		typeConsoRep.save(eauMinerale);
 		typeConsoRep.save(soda);
@@ -74,6 +102,8 @@ public class InitDbService {
 		typeConsoRep.save(vins);
 		typeConsoRep.save(biere);
 		typeConsoRep.save(spiritueux);
+		typeConsoRep.save(serviceAuto);
+		typeConsoRep.save(serviceResto);
 
 		Consommation heineken = new Consommation("Heineken", biere, 2000, 50, 5);
 		Consommation tuborg = new Consommation("Tuborg", biere, 1000, 50, 5);
@@ -112,11 +142,11 @@ public class InitDbService {
 		admin.addRole(role_admin);
 		userRepo.save(admin);
 
-		TypeVehicule coupé = new TypeVehicule("Coupé");
-		typeVehiculeRep.save(coupé);
-
-		TypeVehicule limousine = new TypeVehicule("Limousine");
-		typeVehiculeRep.save(limousine);
+		// TypeVehicule coupé = new TypeVehicule("Coupé");
+		// typeVehiculeRep.save(coupé);
+		//
+		// TypeVehicule limousine = new TypeVehicule("Limousine");
+		// typeVehiculeRep.save(limousine);
 
 		TypeVehicule suv = new TypeVehicule("SUV");
 		typeVehiculeRep.save(suv);
@@ -128,9 +158,9 @@ public class InitDbService {
 		Client c1 = new Client("Alan", "09007718");
 		clientRepo.save(c1);
 
-		Vehicule v1 = new Vehicule("7698 GJ 01", "Mercedes CLK", coupé, c1);
+		Vehicule v1 = new Vehicule("7698 GJ 01", "Mercedes CLK", berline, c1);
 		vehiculeRepo.save(v1);
-		Vehicule v2 = new Vehicule("4737 EN 01", "Mercedes E350", limousine, c1);
+		Vehicule v2 = new Vehicule("4737 EN 01", "Mercedes E350", berline, c1);
 		vehiculeRepo.save(v2);
 
 		Client c2 = new Client("Marcel", "09009577");
@@ -173,6 +203,14 @@ public class InitDbService {
 		lignes.add(lignec3);
 		cmd1.setLigneCommandes(lignes);
 		commandeRepo.save(cmd1);
+
+		ServiceAuto lavageSimple = new ServiceAuto("Lavage simple");
+		ServiceAuto lavageComplet = new ServiceAuto("Lavage complet");
+		ServiceAuto entretienSiege = new ServiceAuto("Entretien siege");
+
+		serviceAutoRepo.save(lavageSimple);
+		serviceAutoRepo.save(lavageComplet);
+		serviceAutoRepo.save(entretienSiege);
 
 	}
 

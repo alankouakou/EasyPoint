@@ -39,7 +39,6 @@ public class CommandeService {
 	}
 
 	public Commande findById(Long id) {
-		// TODO Auto-generated method stub
 		return commandeRepo.findById(id);
 	}
 
@@ -48,7 +47,6 @@ public class CommandeService {
 	}
 
 	public Commande findOneWithDetails(Long id) {
-		// TODO Auto-generated method stub
 		Commande commande = findOne(id);
 		System.out.println(commande);
 		List<LigneCommande> lignes = commande.getLigneCommandes();

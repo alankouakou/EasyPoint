@@ -16,6 +16,7 @@ public class LigneCommande {
 	@ManyToOne
 	@JoinColumn(name = "consommation_id")
 	private Consommation consommation;
+	private int prixUnitaire;
 	private int quantite;
 	private int montant;
 
@@ -61,6 +62,14 @@ public class LigneCommande {
 
 	public int getMontant() {
 		return montant;
+	}
+
+	public int getPrixUnitaire() {
+		return prixUnitaire;
+	}
+
+	public void setPrixUnitaire(int prixUnitaire) {
+		this.prixUnitaire = prixUnitaire;
 	}
 
 	public void setMontant(int montant) {

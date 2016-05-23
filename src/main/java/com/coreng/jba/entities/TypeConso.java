@@ -27,8 +27,9 @@ public class TypeConso {
 	public TypeConso() {
 	}
 
-	public TypeConso(String name) {
+	public TypeConso(String name, Prestation prestation) {
 		this.name = name;
+		this.prestation = prestation;
 	}
 
 	public List<Consommation> getConsommations() {

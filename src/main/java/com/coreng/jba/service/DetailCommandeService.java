@@ -23,7 +23,6 @@ public class DetailCommandeService {
 	private ConsommationRepository consommationRepo;
 
 	public List<LigneCommande> findByCommande(Commande commande) {
-		// TODO Auto-generated method stub
 		return ligneCommandeRepo.findByCommande(commande);
 	}
 
@@ -35,6 +34,7 @@ public class DetailCommandeService {
 		conso = consommationRepo.findOne(ligneCommande.getConsommation().getId());
 		prix = conso.getPrixConso();
 		qte = ligneCommande.getQuantite();
+		ligneCommande.setPrixUnitaire(prix);
 		ligneCommande.setMontant(prix * qte);
 		int NlleQte = conso.getQteEnStock() - qte;
 		// Met à jour le stock si la qté restante est > 0

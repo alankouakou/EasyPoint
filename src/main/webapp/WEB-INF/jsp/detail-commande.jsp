@@ -27,7 +27,7 @@
 							:</label>
 						<div class="col-sm-4">
 							<form:select items="${consommations}" itemLabel="name"
-								itemValue="id" path="consommation" cssClass="form-control" />
+								itemValue="id" path="consommation" cssClass="form-control"/>
 						</div>
 					</div>
 					<div class="form-group">
@@ -67,6 +67,7 @@
 		<tr>
 			<th>N&deg; ligne</th>
 			<th>Consommation</th>
+			<th>Prix unitaire</th>
 			<th>Quantité</th>
 			<th>Montant</th>
 		</tr>
@@ -76,12 +77,14 @@
 			<tr>
 				<td>${detailCommande.id}</td>
 				<td>${detailCommande.consommation.name}</td>
+				<td>${detailCommande.prixUnitaire}</td>
 				<td>${detailCommande.quantite}</td>
 				<td>${detailCommande.montant}</td>
 			</tr>
 		</c:forEach>
 		<tr>
 			<td><p class="lead">Total Commande :</p></td>
+			<td></td>
 			<td></td>
 			<td></td>
 			<td><p class="lead">

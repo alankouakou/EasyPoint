@@ -30,7 +30,6 @@ public class TypeVehiculeService {
 	}
 
 	public TypeVehicule findById(long id) {
-		// TODO Auto-generated method stub
 		return typeVehiculeRep.findById(id);
 	}
 

@@ -55,8 +55,13 @@
 							href="<spring:url value="/clients.html" />">Clients</a></li>
 					</security:authorize>
 					<security:authorize access="isAuthenticated()">
+						<li class="${current == 'auto' ? 'active' : ''}"><a
+							href="<spring:url value="/servicesauto.html" />">Service Auto</a></li>
+					</security:authorize>
+
+					<security:authorize access="isAuthenticated()">
 						<li class="${current == 'commandes' ? 'active' : ''}"><a
-							href="<spring:url value="/commandes.html" />">Commandes</a></li>
+							href="<spring:url value="/commandes.html" />">Bar</a></li>
 					</security:authorize>
 
 					<security:authorize access="hasRole('ROLE_ADMIN')">

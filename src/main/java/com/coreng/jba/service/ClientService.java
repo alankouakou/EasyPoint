@@ -28,7 +28,6 @@ public class ClientService {
 	}
 
 	public Client findById(Long id) {
-		// TODO Auto-generated method stub
 		return clientRep.findById(id);
 	}
 

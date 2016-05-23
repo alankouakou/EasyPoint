@@ -24,7 +24,7 @@
 					<div class="form-group">
 						<label for="nom" class="col-sm-2 control-label">Nom:</label>
 						<div class="col-sm-4">
-							<form:input path="nom" cssClass="form-control" />
+							<form:input path="nom" cssClass="form-control"/>
 						</div>
 					</div>
 					<div class="form-group">
