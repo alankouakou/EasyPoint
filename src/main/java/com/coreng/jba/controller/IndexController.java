@@ -107,10 +107,6 @@ public class IndexController {
 
 	@RequestMapping(value = "/register-vehicule", method = RequestMethod.POST)
 	public String enregistrerVehicule(@ModelAttribute("vehicule") Vehicule vehicule) {
-		// vehicule.setOwner(clientService.findById(vehicule.getOwner().getId()));
-		// vehicule.setTypeVehicule(typeVehiculeService.findByName(vehicule.getTypeVehicule().getLibelle()));
-		vehicule.setOwner(clientService.findById(1L));
-		// vehicule.setTypeVehicule(typeVehiculeService.findByName("berline"));
 
 		vehiculeService.save(vehicule);
 		return "redirect:/vehicules.html";

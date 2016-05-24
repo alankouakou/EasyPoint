@@ -60,6 +60,7 @@
 		<th>Type véhicule</th>
 		<th>Immatriculation</th>
 		<th>Owner</th>
+		<th></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -69,6 +70,7 @@
 			<td>${vehicule.typeVehicule.libelle}</td>
 			<td>${vehicule.immatriculation}</td>
 			<td>${vehicule.owner.nom}</td>
+			<td><a href="/autoservice/${vehicule.id}.html" class="btn btn-sm btn-success">Laver</a>
 		</tr>
 	</c:forEach>
 	</tbody>

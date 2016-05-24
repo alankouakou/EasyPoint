@@ -45,7 +45,7 @@ public class CommandeController {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		CustomDateEditor cde = new CustomDateEditor(format, false);
 		binder.registerCustomEditor(Date.class, cde);
-		binder.registerCustomEditor(Client.class, "client", new ClientIdEditor(clientService));
+		binder.registerCustomEditor(Client.class, new ClientIdEditor(clientService));
 		binder.registerCustomEditor(Consommation.class, new ConsommationIdEditor(consommationService));
 	}
 

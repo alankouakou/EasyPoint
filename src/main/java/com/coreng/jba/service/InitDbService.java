@@ -15,7 +15,7 @@ import com.coreng.jba.entities.Consommation;
 import com.coreng.jba.entities.LigneCommande;
 import com.coreng.jba.entities.Prestation;
 import com.coreng.jba.entities.Role;
-import com.coreng.jba.entities.ServiceAuto;
+import com.coreng.jba.entities.TarifAuto;
 import com.coreng.jba.entities.TypeConso;
 import com.coreng.jba.entities.TypeVehicule;
 import com.coreng.jba.entities.User;
@@ -26,7 +26,7 @@ import com.coreng.jba.repositories.ConsommationRepository;
 import com.coreng.jba.repositories.LigneCommandeRepository;
 import com.coreng.jba.repositories.PrestationRepository;
 import com.coreng.jba.repositories.RoleRepository;
-import com.coreng.jba.repositories.ServiceAutoRepository;
+import com.coreng.jba.repositories.TarifAutoRepository;
 import com.coreng.jba.repositories.TypeConsoRepository;
 import com.coreng.jba.repositories.TypeVehiculeRep;
 import com.coreng.jba.repositories.UserRepository;
@@ -58,7 +58,7 @@ public class InitDbService {
 	private VehiculeRepository vehiculeRepo;
 
 	@Autowired
-	private TypeVehiculeRep typeVehiculeRep;
+	private TypeVehiculeRep typeVehiculeRepo;
 
 	@Autowired
 	private PrestationRepository prestationRepo;
@@ -67,7 +67,7 @@ public class InitDbService {
 	private RoleRepository roleRep;
 
 	@Autowired
-	ServiceAutoRepository serviceAutoRepo;
+	TarifAutoRepository tarifAutoRepo;
 
 	@PostConstruct
 	protected void init() {
@@ -85,37 +85,57 @@ public class InitDbService {
 		TypeConso soda = new TypeConso("Soda", boisson);
 		TypeConso boissonEnergisante = new TypeConso("Boisson energisante", boisson);
 		TypeConso biere = new TypeConso("Bière", boisson);
-		TypeConso vins = new TypeConso("Vin", boisson);
-		TypeConso spiritueux = new TypeConso("spiritueux", boisson);
+		TypeConso vin = new TypeConso("Vin", boisson);
+		TypeConso liqueur = new TypeConso("Liqueur", boisson);
 		TypeConso boissonChaude = new TypeConso("Boisson chaude", boisson);
+		TypeConso champagne = new TypeConso("Champagne", boisson);
 
 		// Les services auto
-		TypeConso serviceAuto = new TypeConso("Service auto", prestationAuto);
-		TypeConso serviceResto = new TypeConso("Grillades", prestationResto);
-
-		// TODO Ajouter autre consos de type serviceAuto, resto
+		// TypeConso serviceAuto = new TypeConso("Service auto",
+		// prestationAuto);
+		// TypeConso serviceResto = new TypeConso("Resto", prestationResto);
 
 		typeConsoRep.save(eauMinerale);
 		typeConsoRep.save(soda);
 		typeConsoRep.save(boissonEnergisante);
 		typeConsoRep.save(boissonChaude);
-		typeConsoRep.save(vins);
+		typeConsoRep.save(vin);
 		typeConsoRep.save(biere);
-		typeConsoRep.save(spiritueux);
-		typeConsoRep.save(serviceAuto);
-		typeConsoRep.save(serviceResto);
+		typeConsoRep.save(liqueur);
+		typeConsoRep.save(champagne);
 
-		Consommation heineken = new Consommation("Heineken", biere, 2000, 50, 5);
-		Consommation tuborg = new Consommation("Tuborg", biere, 1000, 50, 5);
-		Consommation redBull = new Consommation("Red bull", boissonEnergisante, 1500, 50, 5);
-		Consommation coca = new Consommation("Coca Cola", soda, 1000, 80, 5);
-		Consommation chivas = new Consommation("Chivas", spiritueux, 25000, 20, 5);
+		Consommation heineken = new Consommation("Heineken", biere, 2000, 50, 25);
+		Consommation tuborg = new Consommation("Tuborg", biere, 1000, 50, 35);
+		Consommation redBull = new Consommation("Red bull", boissonEnergisante, 2000, 50, 25);
+		Consommation codys = new Consommation("Codys", boissonEnergisante, 1500, 50, 35);
+		Consommation coca = new Consommation("Coca Cola", soda, 1000, 50, 45);
+		Consommation moutoncadet = new Consommation("Mouton Cadet", vin, 12000, 20, 15);
+		Consommation puyfromage = new Consommation("Puyfromage", vin, 15000, 20, 15);
+		Consommation chenet = new Consommation("Chenet", vin, 8000, 20, 15);
+
+		Consommation chivas = new Consommation("Chivas", liqueur, 40000, 20, 15);
+		Consommation jack = new Consommation("Jack Daniels", liqueur, 40000, 20, 15);
+		Consommation johnny = new Consommation("Johnny Red", liqueur, 25000, 20, 15);
+		Consommation johnnyblack = new Consommation("Johnny Black", liqueur, 40000, 20, 15);
+		Consommation doubleblack = new Consommation("Johnny Double Black", liqueur, 25000, 20, 15);
+		Consommation moet = new Consommation("Moet", champagne, 50000, 20, 10);
+		Consommation perrier = new Consommation("Laurent Perrier", champagne, 50000, 25, 10);
 
 		consoRep.save(heineken);
 		consoRep.save(redBull);
+		consoRep.save(codys);
 		consoRep.save(coca);
+		consoRep.save(moutoncadet);
+		consoRep.save(puyfromage);
+		consoRep.save(chenet);
 		consoRep.save(chivas);
 		consoRep.save(tuborg);
+		consoRep.save(moet);
+		consoRep.save(perrier);
+		consoRep.save(jack);
+		consoRep.save(johnny);
+		consoRep.save(johnnyblack);
+		consoRep.save(doubleblack);
 
 		Role role_user = new Role("ROLE_USER");
 		Role role_admin = new Role("ROLE_ADMIN");
@@ -148,11 +168,11 @@ public class InitDbService {
 		// TypeVehicule limousine = new TypeVehicule("Limousine");
 		// typeVehiculeRep.save(limousine);
 
-		TypeVehicule suv = new TypeVehicule("SUV");
-		typeVehiculeRep.save(suv);
-
 		TypeVehicule berline = new TypeVehicule("Berline");
-		typeVehiculeRep.save(berline);
+		typeVehiculeRepo.save(berline);
+
+		TypeVehicule suv = new TypeVehicule("SUV");
+		typeVehiculeRepo.save(suv);
 		// ---------------------------------------
 		// ---------------------------------------
 		Client c1 = new Client("Alan", "09007718");
@@ -204,13 +224,21 @@ public class InitDbService {
 		cmd1.setLigneCommandes(lignes);
 		commandeRepo.save(cmd1);
 
-		ServiceAuto lavageSimple = new ServiceAuto("Lavage simple");
-		ServiceAuto lavageComplet = new ServiceAuto("Lavage complet");
-		ServiceAuto entretienSiege = new ServiceAuto("Entretien siege");
+		TarifAuto lavageSimpleBerline = new TarifAuto("Lavage simple berline", 1000, berline);
+		TarifAuto lavageCompletBerline = new TarifAuto("Lavage complet berline", 2000, berline);
+		TarifAuto entretienSiegeBerline = new TarifAuto("Entretien siege berline", 10000, berline);
 
-		serviceAutoRepo.save(lavageSimple);
-		serviceAutoRepo.save(lavageComplet);
-		serviceAutoRepo.save(entretienSiege);
+		tarifAutoRepo.save(lavageSimpleBerline);
+		tarifAutoRepo.save(lavageCompletBerline);
+		tarifAutoRepo.save(entretienSiegeBerline);
+
+		TarifAuto lavageSimpleSUV = new TarifAuto("Lavage simple 4x4", 1500, suv);
+		TarifAuto lavageCompletSUV = new TarifAuto("Lavage complet 4x4", 3000, suv);
+		TarifAuto entretienSiegeSUV = new TarifAuto("Entretien siege 4x4", 15000, suv);
+
+		tarifAutoRepo.save(lavageSimpleSUV);
+		tarifAutoRepo.save(lavageCompletSUV);
+		tarifAutoRepo.save(entretienSiegeSUV);
 
 	}
 

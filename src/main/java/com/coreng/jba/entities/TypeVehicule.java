@@ -1,6 +1,5 @@
 package com.coreng.jba.entities;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,15 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-/**
- * Entity implementation class for Entity: TypeVehicule
- *
- */
 @Entity
-
-public class TypeVehicule implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class TypeVehicule {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +18,7 @@ public class TypeVehicule implements Serializable {
 	private String libelle;
 
 	@OneToMany(mappedBy = "typeVehicule")
-	private List<Vehicule> vehicules;
+	private List<TarifAuto> tarifs;
 
 	public TypeVehicule() {
 		super();
@@ -52,12 +44,12 @@ public class TypeVehicule implements Serializable {
 		this.libelle = libelle;
 	}
 
-	public List<Vehicule> getVehicules() {
-		return vehicules;
+	public List<TarifAuto> getTarifs() {
+		return tarifs;
 	}
 
-	public void setVehicules(List<Vehicule> vehicules) {
-		this.vehicules = vehicules;
+	public void setTarifs(List<TarifAuto> tarifs) {
+		this.tarifs = tarifs;
 	}
 
 }

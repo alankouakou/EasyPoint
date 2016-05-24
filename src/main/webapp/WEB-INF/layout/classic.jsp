@@ -55,8 +55,25 @@
 							href="<spring:url value="/clients.html" />">Clients</a></li>
 					</security:authorize>
 					<security:authorize access="isAuthenticated()">
-						<li class="${current == 'auto' ? 'active' : ''}"><a
-							href="<spring:url value="/servicesauto.html" />">Service Auto</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">Services Auto <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Auto</li>
+								<security:authorize access="hasRole('ROLE_ADMIN')">
+								<li><a
+									href="<spring:url value="/tarifs-auto.html" />">Tarif prestations</a></li>								
+								</security:authorize>
+								<li role="separator" class="divider"></li>
+								<li><a href="<spring:url value="/vehicules.html" />">Nouvelle
+										prestation</a></li>
+								<li><a
+									href="<spring:url value="/register-vehicule.html" />">Ajouter Véhicule</a></li>
+								<li><a
+									href="<spring:url value="/vehicules.html" />">Véhicules</a></li>
+
+
+							</ul></li>	
 					</security:authorize>
 
 					<security:authorize access="isAuthenticated()">

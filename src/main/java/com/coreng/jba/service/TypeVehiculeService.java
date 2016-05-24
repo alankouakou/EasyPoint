@@ -33,4 +33,9 @@ public class TypeVehiculeService {
 		return typeVehiculeRep.findById(id);
 	}
 
+	public TypeVehicule findOne(long id) {
+		// TODO Auto-generated method stub
+		return typeVehiculeRep.findOne(id);
+	}
+
 }

@@ -82,5 +82,10 @@
   <put-attribute name="current" value="consommations" />
   </definition> 
 
+  <definition name="tarifs-auto" extends="common">
+  <put-attribute name="title" value="Tarifs services auto" />
+  <put-attribute name="body" value="/WEB-INF/jsp/tarifsauto.jsp" />
+  <put-attribute name="current" value="autoservices" />
+  </definition> 
 
 </tiles-definitions>
