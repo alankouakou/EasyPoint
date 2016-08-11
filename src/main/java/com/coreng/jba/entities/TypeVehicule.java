@@ -44,12 +44,4 @@ public class TypeVehicule {
 		this.libelle = libelle;
 	}
 
-	public List<TarifAuto> getTarifs() {
-		return tarifs;
-	}
-
-	public void setTarifs(List<TarifAuto> tarifs) {
-		this.tarifs = tarifs;
-	}
-
 }
